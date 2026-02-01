@@ -12,15 +12,15 @@ import Modal from "@/components/Modal/Modal";
 import NoteForm from "@/components/NoteForm/NoteForm";
 
 type NotesClientProps = {
-  tag?: string;
-  page: number;
-  query: string;
+    tag?: string;
+    page: number;
+    query: string;
 };
 
 export default function NotesClient({ tag, page, query }: NotesClientProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState<number>(page);
-  const [currentQuery, setCurrentQuery] = useState<string>(query);
+  const [currentPage, setCurrentPage] = useState<number>(tag ? 1 : page);
+  const [currentQuery, setCurrentQuery] = useState<string>(tag ? "" : query);
 
   function openModal(): void {
     setIsModalOpen(true);
@@ -37,16 +37,19 @@ export default function NotesClient({ tag, page, query }: NotesClientProps) {
     refetchOnMount: false,
   });
 
-  const handleChangeQuery = useDebouncedCallback((value: string) => {
-    setCurrentPage(1);
-    setCurrentQuery(value.trim());
-  }, 1000);
+  const handleChangeQuery = useDebouncedCallback(
+    (value: string) => {
+      setCurrentPage(1);
+      setCurrentQuery(value.trim());
+    },
+    1000
+  );
 
   const notes = data?.notes ?? [];
   const totalPages = data?.totalPages ?? 0;
 
   return (
-    <div key={tag ?? "all"} className={css.app}>
+    <div className={css.app}>
       <header className={css.toolbar}>
         <SearchBox onChange={handleChangeQuery} value={currentQuery} />
 
@@ -54,7 +57,7 @@ export default function NotesClient({ tag, page, query }: NotesClientProps) {
           <Pagination
             page={currentPage}
             totalPages={totalPages}
-            onPageChange={(nextPage: number) => setCurrentPage(nextPage)}
+            onPageChange={(page: number) => setCurrentPage(page)}
           />
         )}
 

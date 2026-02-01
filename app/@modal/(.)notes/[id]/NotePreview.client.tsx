@@ -10,22 +10,21 @@ type Props = {
   noteId: string;
 };
 
-export default function NotePreviewClient({ noteId }: Props) {
+export default function NotePreviewClient({ noteId: id }: Props) {
   const router = useRouter();
-  const closeModal = () => router.back();
 
-  const {
-    data: note,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ["note", noteId],
-    queryFn: () => fetchNoteById(noteId),
+  const { data: note, isLoading, isError } = useQuery({
+    queryKey: ["note", id],
+    queryFn: () => fetchNoteById(id),
     refetchOnMount: false,
   });
 
+  function closeModal(): void {
+    router.back();
+  }
+
   if (isLoading) return <>Loading...</>;
-  if (error || !note) return <>Something went wrong. Please try again...</>;
+  if (isError || !note) return <>Something went wrong. Please try again...</>;
 
   const formattedDate = note.updatedAt
     ? `Updated at: ${note.updatedAt}`
@@ -38,9 +37,11 @@ export default function NotePreviewClient({ noteId }: Props) {
           <div className={css.header}>
             <h2>{note.title}</h2>
           </div>
+
           <p className={css.content}>{note.content}</p>
           <p className={css.date}>{formattedDate}</p>
           <p className={css.tag}>{note.tag}</p>
+
           <button className={css.backBtn} type="button" onClick={closeModal}>
             Go back
           </button>
