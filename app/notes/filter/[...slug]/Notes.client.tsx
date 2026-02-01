@@ -42,7 +42,7 @@ export default function NotesClient({ tag, page, query }: NotesClientProps) {
       setCurrentPage(1);
       setCurrentQuery(value.trim());
     },
-    1000
+    100
   );
 
   const notes = data?.notes ?? [];
