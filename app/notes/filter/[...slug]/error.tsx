@@ -1,6 +1,6 @@
 "use client";
 
-import css from './NotesPage.module.css';
+import css from "./NotesPage.module.css";
 
 type ErrorProps = {
   error: Error;
