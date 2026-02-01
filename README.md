@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NoteHub — Advanced Routing (HW-07)
 
-## Getting Started
+This project is a continuation of the **NoteHub** application built with **Next.js (App Router)**.  
+The main focus of this homework is advanced routing: parallel routes, intercepting routes, filtering, and modal navigation.
 
-First, run the development server:
+## 🚀 Live Demo
+🔗 Deployed on Vercel:  
+[https://your-vercel-link.vercel.app](https://your-vercel-link.vercel.app)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📂 Source Code
+🔗 GitHub repository:  
+[https://github.com/your-username/07-routing-nextjs](https://github.com/your-username/07-routing-nextjs)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Tech Stack
+- **Next.js** (App Router)
+- **TypeScript**
+- **React**
+- **TanStack Query (React Query)**
+- **Axios**
+- **CSS Modules**
+- **Vercel** (deployment)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## ✨ Features
 
-To learn more about Next.js, take a look at the following resources:
+### 🔀 Advanced Routing
+- Catch-all routes for filtering notes by tag (`/notes/filter/[...slug]`)
+- Parallel routes for sidebar navigation
+- Custom **404 Not Found** page
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🗂️ Notes Filtering
+- Filter notes by tag (Meeting, Personal, Shopping, Todo, Work)
+- Route-based filtering without full page reload
+- "All notes" view without tag parameter
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 🔍 Search
+- Debounced search for notes
+- Optimized UX: instant input response with delayed API requests
 
-## Deploy on Vercel
+### 🪟 Modal Preview
+- Note details are opened in a **modal window**
+- Implemented using **intercepting routes**
+- Background page remains visible while modal is open
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 🌐 Data Fetching
+- API requests handled with **Axios**
+- Server-side data prefetching with **React Query**
+- CSR + SSR support via `HydrationBoundary`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
